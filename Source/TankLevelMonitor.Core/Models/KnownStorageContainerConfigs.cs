@@ -4,13 +4,13 @@ namespace TankLevelMonitor.Models
 {
     public static class KnownStorageContainerConfigs
     {
-        public static TankContainerConfig Standard55GalDrum
+        public static TankSpecs Standard55GalDrum
         {
             get
             {
                 if (standard55GalDrum == null)
                 {
-                    standard55GalDrum = new TankContainerConfig
+                    standard55GalDrum = new TankSpecs
                     {
                         Capacity = new Volume(55, Volume.UnitType.Gallons),
                         EmptyHeight = new Length(85, Length.UnitType.Centimeters),
@@ -25,15 +25,15 @@ namespace TankLevelMonitor.Models
                 return standard55GalDrum;
             }
         }
-        private static TankContainerConfig standard55GalDrum;
+        private static TankSpecs standard55GalDrum;
 
-        public static TankContainerConfig BenchContainer
+        public static TankSpecs BenchContainer
         {
             get
             {
                 if (benchContainer == null)
                 {
-                    benchContainer = new TankContainerConfig
+                    benchContainer = new TankSpecs
                     {
                         Capacity = new Volume(55, Volume.UnitType.Gallons),
                         EmptyHeight = new Length(20, Length.UnitType.Centimeters),
@@ -44,6 +44,6 @@ namespace TankLevelMonitor.Models
                 return benchContainer;
             }
         }
-        private static TankContainerConfig benchContainer;
+        private static TankSpecs benchContainer;
     }
 }

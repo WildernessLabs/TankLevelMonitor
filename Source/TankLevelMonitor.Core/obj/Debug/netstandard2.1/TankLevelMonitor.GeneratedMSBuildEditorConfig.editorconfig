@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = TankLevelMonitor
+build_property.ProjectDir = C:\Projects\TankLevelMonitor\Source\TankLevelMonitor.Core\

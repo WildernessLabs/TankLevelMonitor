@@ -1,12 +1,13 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
-using TankLevelMonitor.Controllers;
+using TankLevelMonitor.Contracts;
+using TankLevelMonitor.Hardware;
 using TankLevelMonitor.Models;
+using TankLevelMonitor_Demo.Controllers;
 
-namespace TankLevelMonitor
+namespace TankLevelMonitor_Demo
 {
-    // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
     public class MeadowApp : App<F7CoreComputeV2>
     {
         MainAppController mainAppController;
@@ -15,7 +16,28 @@ namespace TankLevelMonitor
         {
             Resolver.Log.Info("Initialize...");
 
-            mainAppController = new MainAppController(KnownStorageContainerConfigs.BenchContainer);
+            TankSpecs tankSpecs;
+            ITankLevelHardware hardware;
+
+            //HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
+            HardwareTypes hardwareType = HardwareTypes.LabPrototype;
+
+            switch (hardwareType)
+            {
+                case HardwareTypes.BenchPrototype:
+                    Resolver.Log.Info("instantiating bench prototype hardware.");
+                    hardware = new TankLevelBenchPrototype();
+                    tankSpecs = KnownStorageContainerConfigs.BenchContainer;
+                    break;
+                default:
+                case HardwareTypes.LabPrototype:
+                    Resolver.Log.Info("Instantiating lab prototype hardware.");
+                    hardware = new TankLevelLabPrototype();
+                    tankSpecs = KnownStorageContainerConfigs.Standard55GalDrum;
+                    break;
+            }
+
+            mainAppController = new MainAppController(hardware, tankSpecs);
 
             return base.Initialize();
         }

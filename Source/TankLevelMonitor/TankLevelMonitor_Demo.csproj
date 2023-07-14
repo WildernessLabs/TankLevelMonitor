@@ -12,6 +12,9 @@
     <PackageReference Include="Meadow.ProjectLab" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TankLevelMonitor.Core\TankLevelMonitor.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="meadow.config.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

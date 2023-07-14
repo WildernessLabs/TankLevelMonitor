@@ -2,7 +2,7 @@
 
 namespace TankLevelMonitor.Models
 {
-    public class TankContainerConfig
+    public class TankSpecs
     {
         /// <summary>
         /// Total capacity of the container.

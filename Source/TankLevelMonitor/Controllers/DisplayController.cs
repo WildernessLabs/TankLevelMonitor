@@ -2,7 +2,7 @@
 using Meadow.Foundation.Graphics;
 using Meadow.Units;
 
-namespace TankLevelMonitor.Controllers
+namespace TankLevelMonitor_Demo.Controllers
 {
     public class DisplayController
     {
@@ -88,7 +88,6 @@ namespace TankLevelMonitor.Controllers
                 Update();
             }
         }
-
 
         void Draw()
         {

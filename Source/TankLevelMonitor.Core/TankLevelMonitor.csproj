@@ -1,0 +1,13 @@
+<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>TankLevelMonitor.Core</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Distance.MaxBotix" Version="1.1.0" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Distance.Vl53l0x" Version="1.1.0" />
+    <PackageReference Include="Meadow.ProjectLab" Version="1.1.0" />
+  </ItemGroup>
+</Project>
