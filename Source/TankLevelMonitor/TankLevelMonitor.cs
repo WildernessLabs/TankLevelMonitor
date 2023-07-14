@@ -3,10 +3,10 @@ using Meadow.Foundation;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
-using TankLevelMonitor.Contracts;
-using TankLevelMonitor.Models;
+using WildernessLabs.Hardware.TankLevelMonitor.Contracts;
+using WildernessLabs.Hardware.TankLevelMonitor.Models;
 
-namespace TankLevelMonitor
+namespace WildernessLabs.Hardware.TankLevelMonitor
 {
     public class TankLevelMonitor : SamplingSensorBase<Volume>
     {

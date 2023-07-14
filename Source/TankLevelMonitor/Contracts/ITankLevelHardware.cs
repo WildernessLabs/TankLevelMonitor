@@ -1,7 +1,7 @@
 ﻿using Meadow.Devices;
 using Meadow.Peripherals.Sensors;
 
-namespace TankLevelMonitor.Contracts
+namespace WildernessLabs.Hardware.TankLevelMonitor.Contracts
 {
     public interface ITankLevelHardware
     {

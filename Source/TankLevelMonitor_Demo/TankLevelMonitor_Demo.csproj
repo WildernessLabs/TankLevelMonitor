@@ -12,7 +12,7 @@
     <PackageReference Include="Meadow.ProjectLab" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TankLevelMonitor.Core\TankLevelMonitor.csproj" />
+    <ProjectReference Include="..\TankLevelMonitor\TankLevelMonitor.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">

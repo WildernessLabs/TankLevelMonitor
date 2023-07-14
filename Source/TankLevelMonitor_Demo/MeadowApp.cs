@@ -1,10 +1,10 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
-using TankLevelMonitor.Contracts;
-using TankLevelMonitor.Hardware;
-using TankLevelMonitor.Models;
 using TankLevelMonitor_Demo.Controllers;
+using WildernessLabs.Hardware.TankLevelMonitor.Contracts;
+using WildernessLabs.Hardware.TankLevelMonitor.Hardware;
+using WildernessLabs.Hardware.TankLevelMonitor.Models;
 
 namespace TankLevelMonitor_Demo
 {

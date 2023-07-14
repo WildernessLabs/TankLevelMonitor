@@ -1,6 +1,6 @@
 ﻿using Meadow.Units;
 
-namespace TankLevelMonitor.Models
+namespace WildernessLabs.Hardware.TankLevelMonitor.Models
 {
     public static class KnownStorageContainerConfigs
     {

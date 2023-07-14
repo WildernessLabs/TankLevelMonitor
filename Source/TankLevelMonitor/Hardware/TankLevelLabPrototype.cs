@@ -1,21 +1,21 @@
 ﻿using Meadow.Devices;
 using Meadow.Foundation.Sensors.Distance;
 using Meadow.Peripherals.Sensors;
-using TankLevelMonitor.Contracts;
+using WildernessLabs.Hardware.TankLevelMonitor.Contracts;
 
-namespace TankLevelMonitor.Hardware
+namespace WildernessLabs.Hardware.TankLevelMonitor.Hardware
 {
-    public class TankLevelBenchPrototype : ITankLevelHardware
+    public class TankLevelLabPrototype : ITankLevelHardware
     {
         public IProjectLabHardware ProjectLab { get; set; }
 
         public IRangeFinder DistanceSensor { get; set; }
 
-        public TankLevelBenchPrototype()
+        public TankLevelLabPrototype()
         {
             ProjectLab = Meadow.Devices.ProjectLab.Create();
 
-            DistanceSensor = new Vl53l0x(ProjectLab.I2cBus);
+            DistanceSensor = new MaxBotix(ProjectLab.I2cBus, MaxBotix.SensorType.XL);
         }
     }
 }

@@ -2,8 +2,9 @@
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
-using TankLevelMonitor.Contracts;
-using TankLevelMonitor.Models;
+using WildernessLabs.Hardware.TankLevelMonitor;
+using WildernessLabs.Hardware.TankLevelMonitor.Contracts;
+using WildernessLabs.Hardware.TankLevelMonitor.Models;
 
 namespace TankLevelMonitor_Demo.Controllers
 {
@@ -13,7 +14,7 @@ namespace TankLevelMonitor_Demo.Controllers
 
         protected ITankLevelHardware Hardware { get; set; }
 
-        TankLevelMonitor.TankLevelMonitor tankLevelSensor;
+        TankLevelMonitor tankLevelSensor;
 
         public MainAppController(ITankLevelHardware hardware, TankSpecs storageConfig)
         {
@@ -21,7 +22,7 @@ namespace TankLevelMonitor_Demo.Controllers
 
             Hardware = hardware;
 
-            tankLevelSensor = new TankLevelMonitor.TankLevelMonitor(hardware, storageConfig);
+            tankLevelSensor = new TankLevelMonitor(hardware, storageConfig);
             tankLevelSensor.Updated += StorageContainerUpdated;
 
             if (hardware.ProjectLab.Display is { } display)
