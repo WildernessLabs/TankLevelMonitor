@@ -2,9 +2,7 @@
 using Meadow.Devices;
 using System.Threading.Tasks;
 using TankLevelMonitor_Demo.Controllers;
-using WildernessLabs.Hardware.TankLevelMonitor.Contracts;
-using WildernessLabs.Hardware.TankLevelMonitor.Hardware;
-using WildernessLabs.Hardware.TankLevelMonitor.Models;
+using WildernessLabs.Hardware.TankLevelMonitor;
 
 namespace TankLevelMonitor_Demo
 {
@@ -19,8 +17,8 @@ namespace TankLevelMonitor_Demo
             TankSpecs tankSpecs;
             ITankLevelHardware hardware;
 
-            //HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
-            HardwareTypes hardwareType = HardwareTypes.LabPrototype;
+            HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
+            //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
 
             switch (hardwareType)
             {

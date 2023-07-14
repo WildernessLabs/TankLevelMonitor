@@ -1,4 +1,4 @@
-﻿namespace WildernessLabs.Hardware.TankLevelMonitor.Hardware
+﻿namespace WildernessLabs.Hardware.TankLevelMonitor
 {
     /// <summary>
     /// Which hardware 

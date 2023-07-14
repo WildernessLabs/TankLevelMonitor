@@ -1,9 +1,8 @@
 ﻿using Meadow.Devices;
 using Meadow.Foundation.Sensors.Distance;
 using Meadow.Peripherals.Sensors;
-using WildernessLabs.Hardware.TankLevelMonitor.Contracts;
 
-namespace WildernessLabs.Hardware.TankLevelMonitor.Hardware
+namespace WildernessLabs.Hardware.TankLevelMonitor
 {
     public class TankLevelBenchPrototype : ITankLevelHardware
     {
