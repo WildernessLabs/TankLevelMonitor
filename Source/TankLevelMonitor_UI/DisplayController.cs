@@ -8,14 +8,17 @@ namespace TankLevelMonitor_UI
     {
         readonly MicroGraphics graphics;
 
+        bool isUpdating = false;
+        bool needsUpdate = false;
+
         public int VolumePercent
         {
+            get => volumePercent;
             set
             {
                 volumePercent = value;
                 Update();
             }
-            get { return volumePercent; }
         }
         int volumePercent = 0;
 
@@ -29,31 +32,6 @@ namespace TankLevelMonitor_UI
             }
         }
         (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? atmosphericConditions;
-
-        public bool PumpOn
-        {
-            get => pumpOn;
-            set
-            {
-                pumpOn = value;
-                Update();
-            }
-        }
-        protected bool pumpOn = false;
-
-        public Volume VolumePumped
-        {
-            get => volumePumped;
-            set
-            {
-                volumePumped = value;
-                Update();
-            }
-        }
-        protected Volume volumePumped;
-
-        bool isUpdating = false;
-        bool needsUpdate = false;
 
         public DisplayController(IGraphicsDisplay display)
         {
@@ -91,23 +69,12 @@ namespace TankLevelMonitor_UI
 
         void Draw()
         {
-            graphics.DrawText(x: 2, y: 22, "Pump Status", WildernessLabsColors.AzureBlue);
-
             if (AtmosphericConditions?.Temperature is { } temp)
             {
                 DrawTemp(temp);
             }
 
-            DrawPumpStatus();
-            DrawVolumePumped();
             DrawWaterVolumeGraph(VolumePercent);
-        }
-
-        void DrawPumpStatus()
-        {
-            graphics.DrawText(2, 42, $"Pump: {(PumpOn ? "on" : "off")}",
-                color: WildernessLabsColors.ChileanFire,
-                alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Left);
         }
 
         void DrawTemp(Temperature temp)
@@ -121,17 +88,6 @@ namespace TankLevelMonitor_UI
             //canvas.DrawText(2, 44, $"{temp.Fahrenheit:n0}F°",
             //    color: WildernessLabsColors.ChileanFire,
             //    alignmentH: HorizontalAlignment.Left);
-        }
-
-        void DrawVolumePumped()
-        {
-            graphics.DrawText(2, 62, $"Pumped Ltrs",
-                color: WildernessLabsColors.AzureBlue,
-                alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Left);
-
-            graphics.DrawText(2, 82, $"{VolumePumped.Liters:N2}L",
-                color: WildernessLabsColors.AzureBlue,
-                alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Left);
         }
 
         void DrawWaterVolumeGraph(int volumePercent)

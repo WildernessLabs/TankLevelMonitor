@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using WildernessLabs.Hardware.TankLevelMonitor;
 
-namespace TankLevelMonitor_Demo.Controllers
+namespace TankLevelMonitor_Demo
 {
     public class MainAppController
     {

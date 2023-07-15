@@ -47,14 +47,6 @@ namespace TankLevelMonitor_Azure
         {
             Resolver.Log.Info("NetworkConnected...");
 
-            //DisplayController.Instance.ShowConnected();
-
-            //await amqpController.Initialize();
-
-            //projectLab.EnvironmentalSensor.StartUpdating(TimeSpan.FromSeconds(15));
-
-            //onboardLed.SetColor(Color.Green);
-
             await mainAppController.iotHubManager.Initialize();
             await mainAppController.Run();
         }
