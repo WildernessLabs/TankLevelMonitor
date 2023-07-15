@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor", "TankLev
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor_Demo", "TankLevelMonitor_Demo\TankLevelMonitor_Demo.csproj", "{841E63C8-CEB5-4A16-9382-563775B0EA37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankLevelMonitor_UI", "TankLevelMonitor_UI\TankLevelMonitor_UI.csproj", "{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor_UI", "TankLevelMonitor_UI\TankLevelMonitor_UI.csproj", "{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor_Azure", "TankLevelMonitor_Azure\TankLevelMonitor_Azure.csproj", "{9BAD7EC0-F585-4382-88CB-5C1FFE516688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,12 @@ Global
 		{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

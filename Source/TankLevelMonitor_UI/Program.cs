@@ -10,7 +10,7 @@ namespace TankLevelMonitor_UI
 
         public override Task Initialize()
         {
-            Console.WriteLine("Creating Outputs");
+            Console.WriteLine("Initialize...");
 
             _display = new WinFormsDisplay(width: 480, height: 320);
 
@@ -21,6 +21,8 @@ namespace TankLevelMonitor_UI
 
         public override Task Run()
         {
+            Console.WriteLine("Run...");
+
             _displayController.Update();
 
             Application.Run(_display);
