@@ -12,7 +12,7 @@ namespace TankLevelMonitor_UI
         {
             Console.WriteLine("Initialize...");
 
-            _display = new WinFormsDisplay(width: 480, height: 320);
+            _display = new WinFormsDisplay(width: 320, height: 240);
 
             _displayController = new DisplayController(_display);
 
@@ -23,7 +23,9 @@ namespace TankLevelMonitor_UI
         {
             Console.WriteLine("Run...");
 
-            _displayController.Update();
+            //_displayController.ShowSplashScreen();
+            _displayController.VolumePercent = 100;
+            //_displayController.Update();
 
             Application.Run(_display);
 
