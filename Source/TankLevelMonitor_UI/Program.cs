@@ -6,7 +6,7 @@ namespace TankLevelMonitor_UI
     public class MeadowApp : App<Windows>
     {
         private WinFormsDisplay _display = default!;
-        private DisplayController _displayController;
+        private DisplayControllerWithStatus _displayController;
 
         public override Task Initialize()
         {
@@ -14,7 +14,7 @@ namespace TankLevelMonitor_UI
 
             _display = new WinFormsDisplay(width: 320, height: 240);
 
-            _displayController = new DisplayController(_display);
+            _displayController = new DisplayControllerWithStatus(_display);
 
             return Task.CompletedTask;
         }
@@ -24,8 +24,7 @@ namespace TankLevelMonitor_UI
             Console.WriteLine("Run...");
 
             //_displayController.ShowSplashScreen();
-            _displayController.VolumePercent = 100;
-            //_displayController.Update();
+            _displayController.VolumePercent = 95;
 
             Application.Run(_display);
 

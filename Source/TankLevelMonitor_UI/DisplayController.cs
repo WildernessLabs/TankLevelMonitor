@@ -7,6 +7,9 @@ namespace TankLevelMonitor_UI
     {
         readonly MicroGraphics graphics;
 
+        Meadow.Foundation.Color backgroundColor = Meadow.Foundation.Color.White;
+        Meadow.Foundation.Color foregroundColor = Meadow.Foundation.Color.Black;
+
         bool isUpdating = false;
         bool needsUpdate = false;
 
@@ -69,7 +72,7 @@ namespace TankLevelMonitor_UI
 
             isUpdating = true;
 
-            graphics.Clear();
+            graphics.Clear(backgroundColor);
             Draw();
             graphics.Show();
 
@@ -90,21 +93,21 @@ namespace TankLevelMonitor_UI
                 x: 11,
                 y: 11,
                 text: "Temperature",
-                color: Meadow.Foundation.Color.White,
+                color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
                 x: 11,
                 y: 90,
                 text: "Humidity",
-                color: Meadow.Foundation.Color.White,
+                color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
                 x: 11,
                 y: 169,
                 text: "Pressure",
-                color: Meadow.Foundation.Color.White,
+                color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             DrawAtmosphericConditions(AtmosphericConditions);
@@ -118,21 +121,21 @@ namespace TankLevelMonitor_UI
                 x: 19,
                 y: 47,
                 text: $"{temp?.Temperature.Value.Celsius:n0}C/{temp?.Temperature.Value.Fahrenheit:n0}F",
-                color: Meadow.Foundation.Color.White,
+                color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
                 x: 19,
                 y: 126,
                 text: $"{temp?.Humidity.Value.Percent:n0}%",
-                color: Meadow.Foundation.Color.White,
+                color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
                 x: 19,
                 y: 205,
                 text: $"{temp?.Pressure.Value.Millibar:n0}mbar",
-                color: Meadow.Foundation.Color.White,
+                color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
         }
 
@@ -176,13 +179,14 @@ namespace TankLevelMonitor_UI
                 graphics.DrawRectangle(x, 222 - (barHeight * i + 13), width, 20, color, true);
             }
 
-            graphics.DrawRectangle(231, 103, 52, 28, Meadow.Foundation.Color.FromHex("004B6B"), true);
+            graphics.DrawRectangle(225, 103, 68, 28, Meadow.Foundation.Color.FromHex("004B6B"), true);
             graphics.DrawText(
-                x: 235,
+                x: 259,
                 y: graphics.Height / 2,
                 text: $"{volumePercent}%",
                 color: Meadow.Foundation.Color.White,
                 scaleFactor: ScaleFactor.X2,
+                alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Center,
                 alignmentV: Meadow.Foundation.Graphics.VerticalAlignment.Center);
         }
     }

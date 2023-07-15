@@ -1,14 +1,16 @@
 ﻿using Meadow.Foundation.Graphics;
 using Meadow.Units;
 
-namespace TankLevelMonitor_Demo
+namespace TankLevelMonitor_UI
 {
-    public class DisplayController
+    internal class DisplayControllerWithStatus
     {
         readonly MicroGraphics graphics;
 
         Meadow.Foundation.Color backgroundColor = Meadow.Foundation.Color.White;
         Meadow.Foundation.Color foregroundColor = Meadow.Foundation.Color.Black;
+        IFont font12x20 = new Font12x20();
+        IFont font8x12 = new Font8x12();
 
         bool isUpdating = false;
         bool needsUpdate = false;
@@ -35,7 +37,18 @@ namespace TankLevelMonitor_Demo
         }
         (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? atmosphericConditions;
 
-        public DisplayController(IGraphicsDisplay display)
+        public string Status
+        {
+            get => status;
+            set
+            {
+                status = value;
+                Update();
+            }
+        }
+        string status = string.Empty;
+
+        public DisplayControllerWithStatus(IGraphicsDisplay display)
         {
             graphics = new MicroGraphics(display)
             {
@@ -87,26 +100,38 @@ namespace TankLevelMonitor_Demo
 
         void Draw()
         {
-            graphics.CurrentFont = new Font8x12();
+            graphics.CurrentFont = font12x20;
 
             graphics.DrawText(
                 x: 11,
                 y: 11,
-                text: "Temperature",
-                color: foregroundColor,
-                scaleFactor: ScaleFactor.X2);
+                text: "Status:",
+                color: foregroundColor);
 
             graphics.DrawText(
                 x: 11,
-                y: 90,
-                text: "Humidity",
-                color: foregroundColor,
-                scaleFactor: ScaleFactor.X2);
+                y: 66,
+                text: "Temperature:",
+                color: foregroundColor);
 
             graphics.DrawText(
                 x: 11,
-                y: 169,
-                text: "Pressure",
+                y: 122,
+                text: "Humidity:",
+                color: foregroundColor);
+
+            graphics.DrawText(
+                x: 11,
+                y: 178,
+                text: "Pressure:",
+                color: foregroundColor);
+
+            graphics.CurrentFont = font8x12;
+
+            graphics.DrawText(
+                x: 25,
+                y: 38,
+                text: "Hello",
                 color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
@@ -118,21 +143,21 @@ namespace TankLevelMonitor_Demo
         void DrawAtmosphericConditions((Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? temp)
         {
             graphics.DrawText(
-                x: 19,
-                y: 47,
+                x: 25,
+                y: 93,
                 text: $"{temp?.Temperature.Value.Celsius:n0}C/{temp?.Temperature.Value.Fahrenheit:n0}F",
                 color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
-                x: 19,
-                y: 126,
+                x: 25,
+                y: 149,
                 text: $"{temp?.Humidity.Value.Percent:n0}%",
                 color: foregroundColor,
                 scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
-                x: 19,
+                x: 25,
                 y: 205,
                 text: $"{temp?.Pressure.Value.Millibar:n0}mbar",
                 color: foregroundColor,
