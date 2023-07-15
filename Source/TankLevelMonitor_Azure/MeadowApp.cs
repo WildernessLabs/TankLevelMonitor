@@ -14,6 +14,9 @@ namespace TankLevelMonitor_Azure
         {
             Resolver.Log.Info("Initialize...");
 
+            var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+            wifi.NetworkConnected += NetworkConnected;
+
             TankSpecs tankSpecs;
             ITankLevelHardware hardware;
 
@@ -42,6 +45,8 @@ namespace TankLevelMonitor_Azure
 
         private async void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
         {
+            Resolver.Log.Info("NetworkConnected...");
+
             //DisplayController.Instance.ShowConnected();
 
             //await amqpController.Initialize();
