@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor", "TankLevelMonitor\TankLevelMonitor.csproj", "{72F74011-2C35-4490-BD5F-582ECBD96476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.Core", "TankLevelMonitor\TankLevelMonitor.Core.csproj", "{72F74011-2C35-4490-BD5F-582ECBD96476}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor_Demo", "TankLevelMonitor_Demo\TankLevelMonitor_Demo.csproj", "{841E63C8-CEB5-4A16-9382-563775B0EA37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.Demo", "TankLevelMonitor_Demo\TankLevelMonitor.Demo.csproj", "{841E63C8-CEB5-4A16-9382-563775B0EA37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor_UI", "TankLevelMonitor_UI\TankLevelMonitor_UI.csproj", "{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.UI", "TankLevelMonitor_UI\TankLevelMonitor.UI.csproj", "{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor_Azure", "TankLevelMonitor_Azure\TankLevelMonitor_Azure.csproj", "{9BAD7EC0-F585-4382-88CB-5C1FFE516688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.Azure", "TankLevelMonitor_Azure\TankLevelMonitor.Azure.csproj", "{9BAD7EC0-F585-4382-88CB-5C1FFE516688}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5F4E41AE-D5DC-4402-A169-396E2E4B5C67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{841E63C8-CEB5-4A16-9382-563775B0EA37} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}
+		{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}
+		{9BAD7EC0-F585-4382-88CB-5C1FFE516688} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD0696CC-880A-4832-9346-C3A44B529DC8}

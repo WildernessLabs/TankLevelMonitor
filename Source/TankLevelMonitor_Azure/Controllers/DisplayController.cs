@@ -48,7 +48,7 @@ namespace TankLevelMonitor_Azure
         }
         string status = string.Empty;
 
-        public DisplayControllerWithStatus(IGraphicsDisplay display)
+        public DisplayController(IGraphicsDisplay display)
         {
             graphics = new MicroGraphics(display)
             {

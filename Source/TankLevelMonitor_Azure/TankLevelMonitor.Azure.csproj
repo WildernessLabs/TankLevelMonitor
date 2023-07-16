@@ -11,7 +11,7 @@
     <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TankLevelMonitor\TankLevelMonitor.csproj" />
+    <ProjectReference Include="..\TankLevelMonitor\TankLevelMonitor.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
