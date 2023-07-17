@@ -36,7 +36,7 @@ namespace TankLevelMonitor_Demo
 
         private void Bme688Updated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
         {
-            Resolver.Log.Info($"BME688: {(int)e.New.Temperature?.Celsius}°C - {(int)e.New.Humidity?.Percent}% - {(int)e.New.Pressure?.Millibar}mbar");
+            //Resolver.Log.Info($"BME688: {(int)e.New.Temperature?.Celsius}°C - {(int)e.New.Humidity?.Percent}% - {(int)e.New.Pressure?.Millibar}mbar");
             if (displayController != null)
             {
                 displayController.AtmosphericConditions = e.New;
@@ -45,9 +45,9 @@ namespace TankLevelMonitor_Demo
 
         private void StorageContainerUpdated(object sender, IChangeResult<Volume> result)
         {
-            Resolver.Log.Info($"Distance Sensor: {tankLevelSensor.DistanceToTopOfLiquid.Centimeters:n2}cm");
-            Resolver.Log.Info($"Storage container: {result.New.Liters:n2}liters.");
-            Resolver.Log.Info($"fill percent: {(int)(tankLevelSensor.FillPercent * 100)}%");
+            Resolver.Log.Info($"Distance Sensor: {tankLevelSensor.DistanceToTopOfLiquid.Centimeters:n2}cm / Storage container: {result.New.Liters:n2}liters. / fill percent: {(int)(tankLevelSensor.FillPercent * 100)}%");
+            //Resolver.Log.Info($"");
+            //Resolver.Log.Info($"");
             displayController.VolumePercent = (int)(tankLevelSensor.FillPercent * 100);
         }
 
@@ -59,7 +59,7 @@ namespace TankLevelMonitor_Demo
             }
 
             Resolver.Log.Info("Starting storage container update.");
-            tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(1));
+            tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(5));
 
             if (displayController != null)
             {

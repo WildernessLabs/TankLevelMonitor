@@ -45,5 +45,24 @@ namespace WildernessLabs.Hardware.TankLevelMonitor
             }
         }
         private static TankSpecs benchContainer;
+
+        public static TankSpecs Container3500ml
+        {
+            get
+            {
+                if (container3500ml == null)
+                {
+                    container3500ml = new TankSpecs
+                    {
+                        Capacity = new Volume(3500, Volume.UnitType.Milliliters),
+                        EmptyHeight = new Length(26, Length.UnitType.Centimeters),
+
+                        VolumePerCentimeter = new Volume(181.5, Volume.UnitType.Milliliters)
+                    };
+                }
+                return container3500ml;
+            }
+        }
+        private static TankSpecs container3500ml;
     }
 }
