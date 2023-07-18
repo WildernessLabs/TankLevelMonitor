@@ -57,9 +57,9 @@ namespace TankLevelMonitor_Azure.Azure
             {
                 string messagePayload = $"" +
                         $"{{" +
-                        $"\"temperature\":{reading.Temperature.Value.Celsius}," +
-                        $"\"humidity\":{reading.Humidity.Value.Percent}," +
-                        $"\"pressure\":{reading.Pressure.Value.Millibar}" +
+                        $"\"Temperature\":{reading.Temperature.Value.Celsius}," +
+                        $"\"Humidity\":{reading.Humidity.Value.Percent}," +
+                        $"\"Pressure\":{reading.Pressure.Value.Millibar}" +
                         $"}}";
 
                 var message = new Message(Encoding.UTF8.GetBytes(messagePayload));

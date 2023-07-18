@@ -36,7 +36,7 @@ namespace TankLevelMonitor_Demo
 
             mainAppController = new MainAppController(hardware, tankSpecs);
 
-            return base.Initialize();
+            return Task.CompletedTask;
         }
 
         public override Task Run()
@@ -45,43 +45,7 @@ namespace TankLevelMonitor_Demo
 
             mainAppController.Run();
 
-            return base.Run();
+            return Task.CompletedTask;
         }
-
-
-        //Vl53l0x sensor;
-
-        //public override Task Initialize()
-        //{
-        //    Resolver.Log.Info("Initializing hardware...");
-
-        //    var i2cBus = ProjectLab.Create();
-        //    sensor = new Vl53l0x(i2cBus.I2cBus, (byte)Vl53l0x.Addresses.Default);
-
-        //    sensor.DistanceUpdated += Sensor_Updated;
-
-        //    return Task.CompletedTask;
-        //}
-
-        //public override Task Run()
-        //{
-        //    sensor.StartUpdating(TimeSpan.FromMilliseconds(250));
-
-        //    return Task.CompletedTask;
-        //}
-
-        //private void Sensor_Updated(object sender, IChangeResult<Length> result)
-        //{
-        //    if (result.New == null) { return; }
-
-        //    if (result.New < new Length(0, Length.UnitType.Millimeters))
-        //    {
-        //        Resolver.Log.Info("out of range.");
-        //    }
-        //    else
-        //    {
-        //        Resolver.Log.Info($"{result.New.Millimeters}");
-        //    }
-        //}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Meadow.Foundation.Graphics;
 using Meadow.Units;
+using System;
 
 namespace TankLevelMonitor_Demo
 {
@@ -18,7 +19,7 @@ namespace TankLevelMonitor_Demo
             get => volumePercent;
             set
             {
-                volumePercent = value;
+                volumePercent = Math.Clamp(value, 0, 100);
                 Update();
             }
         }
