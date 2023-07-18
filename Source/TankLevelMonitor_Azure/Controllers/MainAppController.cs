@@ -55,7 +55,7 @@ namespace TankLevelMonitor_Azure
             Resolver.Log.Info($"Storage container: {result.New.Liters:n2}liters.");
             Resolver.Log.Info($"fill percent: {(int)(tankLevelSensor.FillPercent * 100)}%");
 
-            await iotHubManager.SendVolumeReading(result.New);
+            //await iotHubManager.SendVolumeReading(result.New);
             displayController.VolumePercent = (int)(tankLevelSensor.FillPercent * 100);
         }
 
@@ -67,7 +67,7 @@ namespace TankLevelMonitor_Azure
             }
 
             Resolver.Log.Info("Starting storage container update.");
-            tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(1));
+            //tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(1));
 
             displayController.Update();
 

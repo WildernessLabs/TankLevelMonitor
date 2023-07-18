@@ -51,7 +51,7 @@ namespace TankLevelMonitor_AzureFunction
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
 
                     // get our device id, temp and humidity from the object
-                    string deviceId = (string)deviceMessage["systemProperties"]["meadow-tank-level-monitor"];
+                    string deviceId = (string)deviceMessage["systemProperties"]["iot-connection-device-id"];
                     var temperature = deviceMessage["body"]["Temperature"];
                     var humidity = deviceMessage["body"]["Humidity"];
                     var pressure = deviceMessage["body"]["Pressure"];

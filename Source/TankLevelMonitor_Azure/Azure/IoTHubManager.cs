@@ -57,8 +57,6 @@ namespace TankLevelMonitor_Azure.Azure
             {
                 string messagePayload = $"" +
                         $"{{" +
-                        $"\"messageId\":{messageId++}," +
-                        $"\"deviceId\":\"{Secrets.DEVICE_ID}\"," +
                         $"\"temperature\":{reading.Temperature.Value.Celsius}," +
                         $"\"humidity\":{reading.Humidity.Value.Percent}," +
                         $"\"pressure\":{reading.Pressure.Value.Millibar}" +
