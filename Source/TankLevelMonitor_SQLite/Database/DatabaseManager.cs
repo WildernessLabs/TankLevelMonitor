@@ -10,7 +10,7 @@ namespace TankLevelMonitor_Demo.SQLite.Database
     public class DatabaseManager
     {
         private static readonly Lazy<DatabaseManager> instance =
-            new Lazy<DatabaseManager>(() => new DatabaseManager());
+            new(() => new DatabaseManager());
         public static DatabaseManager Instance => instance.Value;
 
         bool isConfigured = false;

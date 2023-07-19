@@ -10,11 +10,11 @@ namespace TankLevelMonitor_Demo
 {
     public class MainAppController
     {
-        DisplayController displayController;
+        readonly DisplayController displayController;
 
         protected ITankLevelHardware Hardware { get; set; }
 
-        TankLevelMonitor tankLevelSensor;
+        readonly TankLevelMonitor tankLevelSensor;
 
         AtmosphericConditions? atmosphericConditions;
 
@@ -76,10 +76,7 @@ namespace TankLevelMonitor_Demo
             Resolver.Log.Info("Starting storage container update.");
             tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(5));
 
-            if (displayController != null)
-            {
-                displayController.Update();
-            }
+            displayController?.Update();
 
             return Task.CompletedTask;
         }
