@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = TankLevelMonitor.SQLite
+build_property.ProjectDir = C:\WL\TankLevelMonitor\Source\TankLevelMonitor_SQLite\
