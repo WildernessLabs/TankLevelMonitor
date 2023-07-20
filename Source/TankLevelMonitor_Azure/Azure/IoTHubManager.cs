@@ -1,4 +1,5 @@
 ﻿using Amqp;
+using Amqp.Framing;
 using Meadow;
 using Meadow.Units;
 using System;
@@ -21,28 +22,22 @@ namespace TankLevelMonitor_Azure.Azure
     /// </summary>
     public class IotHubManager
     {
-        private const string HubName = Secrets.HUB_NAME;
-        private const string SasToken = Secrets.SAS_TOKEN;
-        private const string DeviceId = Secrets.DEVICE_ID;
-
         private Connection connection;
         private SenderLink sender;
-
-        private int messageId = 0;
 
         public IotHubManager() { }
 
         public async Task Initialize()
         {
-            string hostName = HubName + ".azure-devices.net";
-            string userName = DeviceId + "@sas." + HubName;
-            string senderAddress = "devices/" + DeviceId + "/messages/events";
+            string hostName = Secrets.HUB_NAME + ".azure-devices.net";
+            string userName = Secrets.DEVICE_ID + "@sas." + Secrets.HUB_NAME;
+            string senderAddress = "devices/" + Secrets.DEVICE_ID + "/messages/events";
 
             Resolver.Log.Info("Create connection factory...");
             var factory = new ConnectionFactory();
 
             Resolver.Log.Info("Create connection ...");
-            connection = await factory.CreateAsync(new Address(hostName, 5671, userName, SasToken));
+            connection = await factory.CreateAsync(new Address(hostName, 5671, userName, Secrets.SAS_TOKEN));
 
             Resolver.Log.Info("Create session ...");
             var session = new Session(connection);
@@ -51,7 +46,9 @@ namespace TankLevelMonitor_Azure.Azure
             sender = new SenderLink(session, "send-link", senderAddress);
         }
 
-        public Task SendEnvironmentalReading((Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance) reading)
+        public Task SendEnvironmentalReading(
+            (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance) reading,
+            Volume volume)
         {
             try
             {
@@ -59,41 +56,22 @@ namespace TankLevelMonitor_Azure.Azure
                         $"{{" +
                         $"\"Temperature\":{reading.Temperature.Value.Celsius}," +
                         $"\"Humidity\":{reading.Humidity.Value.Percent}," +
-                        $"\"Pressure\":{reading.Pressure.Value.Millibar}" +
+                        $"\"Pressure\":{reading.Pressure.Value.Millibar}," +
+                        $"\"Volume\":{volume.Milliliters}" +
                         $"}}";
 
-                var message = new Message(Encoding.UTF8.GetBytes(messagePayload));
-                message.ApplicationProperties = new Amqp.Framing.ApplicationProperties();
+                var payloadBytes = Encoding.UTF8.GetBytes(messagePayload);
+                var message = new Message()
+                {
+                    BodySection = new Data() { Binary = payloadBytes }
+                };
 
-                sender.Send(message, null, null);
+                sender.SendAsync(message);
 
-                Resolver.Log.Info($"*** DATA SENT - Temperature - {reading.Temperature.Value.Celsius}, Humidity - {reading.Humidity.Value.Percent}, Pressure - {reading.Pressure.Value.Millibar} ***");
-            }
-            catch (Exception ex)
-            {
-                Resolver.Log.Info($"-- D2C Error - {ex.Message} --");
-            }
-
-            return Task.CompletedTask;
-        }
-
-        public Task SendVolumeReading(Volume reading)
-        {
-            try
-            {
-                string messagePayload = $"" +
-                        $"{{" +
-                        $"\"messageId\":{messageId++}," +
-                        $"\"deviceId\":\"{Secrets.DEVICE_ID}\"," +
-                        $"\"volume\":{reading.Milliliters}," +
-                        $"}}";
-
-                var message = new Message(Encoding.UTF8.GetBytes(messagePayload));
-                message.ApplicationProperties = new Amqp.Framing.ApplicationProperties();
-
-                sender.Send(message, null, null);
-
-                Resolver.Log.Info($"*** DATA SENT - Volume - {reading.Milliliters} ***");
+                Resolver.Log.Info($"Message sent - Temperature: {reading.Temperature.Value.Celsius:n1}ºC | " +
+                    $"Humidity: {reading.Humidity.Value.Percent:n1}% | " +
+                    $"Pressure: {reading.Pressure.Value.Millibar:n1}mBar | " +
+                    $"Volume: {volume.Milliliters:n1}ml");
             }
             catch (Exception ex)
             {

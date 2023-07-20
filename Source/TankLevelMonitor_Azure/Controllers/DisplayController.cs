@@ -1,5 +1,6 @@
 ﻿using Meadow.Foundation.Graphics;
 using Meadow.Units;
+using System;
 
 namespace TankLevelMonitor_Azure
 {
@@ -9,8 +10,6 @@ namespace TankLevelMonitor_Azure
 
         Meadow.Foundation.Color backgroundColor = Meadow.Foundation.Color.White;
         Meadow.Foundation.Color foregroundColor = Meadow.Foundation.Color.Black;
-        IFont font12x20 = new Font12x20();
-        IFont font8x12 = new Font8x12();
 
         bool isUpdating = false;
         bool needsUpdate = false;
@@ -20,7 +19,7 @@ namespace TankLevelMonitor_Azure
             get => volumePercent;
             set
             {
-                volumePercent = value;
+                volumePercent = Math.Clamp(value, 0, 100);
                 Update();
             }
         }
@@ -36,17 +35,6 @@ namespace TankLevelMonitor_Azure
             }
         }
         (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? atmosphericConditions;
-
-        public string Status
-        {
-            get => status;
-            set
-            {
-                status = value;
-                Update();
-            }
-        }
-        string status = string.Empty;
 
         public DisplayController(IGraphicsDisplay display)
         {
@@ -100,40 +88,25 @@ namespace TankLevelMonitor_Azure
 
         void Draw()
         {
-            graphics.CurrentFont = font12x20;
+            graphics.CurrentFont = new Font12x20();
 
             graphics.DrawText(
                 x: 11,
                 y: 11,
-                text: "Status:",
+                text: "Temperature",
                 color: foregroundColor);
 
             graphics.DrawText(
                 x: 11,
-                y: 66,
-                text: "Temperature:",
+                y: 90,
+                text: "Humidity",
                 color: foregroundColor);
 
             graphics.DrawText(
                 x: 11,
-                y: 122,
-                text: "Humidity:",
+                y: 169,
+                text: "Pressure",
                 color: foregroundColor);
-
-            graphics.DrawText(
-                x: 11,
-                y: 178,
-                text: "Pressure:",
-                color: foregroundColor);
-
-            graphics.CurrentFont = font8x12;
-
-            graphics.DrawText(
-                x: 25,
-                y: 38,
-                text: Status,
-                color: foregroundColor,
-                scaleFactor: ScaleFactor.X2);
 
             DrawAtmosphericConditions(AtmosphericConditions);
 
@@ -143,25 +116,25 @@ namespace TankLevelMonitor_Azure
         void DrawAtmosphericConditions((Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? temp)
         {
             graphics.DrawText(
-                x: 25,
-                y: 93,
-                text: $"{temp?.Temperature.Value.Celsius:n0}C/{temp?.Temperature.Value.Fahrenheit:n0}F",
+                x: 19,
+                y: 47,
+                text: $"{temp?.Temperature.Value.Celsius:n0}°C/{temp?.Temperature.Value.Fahrenheit:n0}°F",
                 color: foregroundColor,
-                scaleFactor: ScaleFactor.X2);
+                scaleFactor: ScaleFactor.X1);
 
             graphics.DrawText(
-                x: 25,
-                y: 149,
+                x: 19,
+                y: 126,
                 text: $"{temp?.Humidity.Value.Percent:n0}%",
                 color: foregroundColor,
-                scaleFactor: ScaleFactor.X2);
+                scaleFactor: ScaleFactor.X1);
 
             graphics.DrawText(
-                x: 25,
+                x: 19,
                 y: 205,
                 text: $"{temp?.Pressure.Value.Millibar:n0}mbar",
                 color: foregroundColor,
-                scaleFactor: ScaleFactor.X2);
+                scaleFactor: ScaleFactor.X1);
         }
 
         void DrawWaterVolumeGraph(int volumePercent)
@@ -204,13 +177,12 @@ namespace TankLevelMonitor_Azure
                 graphics.DrawRectangle(x, 222 - (barHeight * i + 13), width, 20, color, true);
             }
 
-            graphics.DrawRectangle(225, 103, 68, 28, Meadow.Foundation.Color.FromHex("004B6B"), true);
+            graphics.DrawRectangle(231, 105, 60, 28, Meadow.Foundation.Color.FromHex("004B6B"), true);
             graphics.DrawText(
                 x: 259,
                 y: graphics.Height / 2,
                 text: $"{volumePercent}%",
                 color: Meadow.Foundation.Color.White,
-                scaleFactor: ScaleFactor.X2,
                 alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Center,
                 alignmentV: Meadow.Foundation.Graphics.VerticalAlignment.Center);
         }

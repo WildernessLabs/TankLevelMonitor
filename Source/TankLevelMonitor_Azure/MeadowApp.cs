@@ -28,7 +28,7 @@ namespace TankLevelMonitor_Azure
                 case HardwareTypes.BenchPrototype:
                     Resolver.Log.Info("instantiating bench prototype hardware.");
                     hardware = new TankLevelBenchPrototype();
-                    tankSpecs = KnownStorageContainerConfigs.BenchContainer;
+                    tankSpecs = KnownStorageContainerConfigs.Container3500ml;
                     break;
                 default:
                 case HardwareTypes.LabPrototype:

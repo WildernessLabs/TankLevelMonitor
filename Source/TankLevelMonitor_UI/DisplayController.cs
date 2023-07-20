@@ -176,7 +176,7 @@ namespace TankLevelMonitor_UI
                 graphics.DrawRectangle(x, 222 - (barHeight * i + 13), width, 20, color, true);
             }
 
-            graphics.DrawRectangle(225, 103, 68, 28, Meadow.Foundation.Color.FromHex("004B6B"), true);
+            graphics.DrawRectangle(231, 105, 60, 28, Meadow.Foundation.Color.FromHex("004B6B"), true);
             graphics.DrawText(
                 x: 259,
                 y: graphics.Height / 2,
