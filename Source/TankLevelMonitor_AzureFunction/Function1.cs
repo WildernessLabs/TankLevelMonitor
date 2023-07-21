@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace TankLevelMonitor_AzureFunction
@@ -47,22 +48,32 @@ namespace TankLevelMonitor_AzureFunction
                 {
                     log.LogInformation(eventGridEvent.Data.ToString());
 
-                    // convert the message into a json object
-                    JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                    var deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+
+                    var decodedBytes = Convert.FromBase64String(deviceMessage["body"].ToString());
+                    var jsonString = Encoding.UTF8.GetString(decodedBytes);
+
+                    log.LogInformation($"DATA - {jsonString}");
+
+                    var dataMessage = (JObject)JsonConvert.DeserializeObject(jsonString);
 
                     // get our device id, temp and humidity from the object
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
-                    var temperature = deviceMessage["body"]["Temperature"];
-                    var humidity = deviceMessage["body"]["Humidity"];
-                    var pressure = deviceMessage["body"]["Pressure"];
+                    var temperature = dataMessage["Temperature"];
+                    var humidity = dataMessage["Humidity"];
+                    var pressure = dataMessage["Pressure"];
+                    var volume = dataMessage["Volume"];
 
-                    // log the temperature and humidity
-                    log.LogInformation($"Device: {deviceId} Temperature is: {temperature}, humidity is: {humidity} and pressure is: {pressure}");
+                    log.LogInformation($"Temperature - {dataMessage["Temperature"]}");
+                    log.LogInformation($"Humidity - {dataMessage["Humidity"]}");
+                    log.LogInformation($"Pressure - {dataMessage["Pressure"]}");
+                    log.LogInformation($"Volume - {dataMessage["Volume"]}");
 
                     var updateTwinData = new JsonPatchDocument();
                     updateTwinData.AppendReplace("/Temperature", temperature.Value<double>());
                     updateTwinData.AppendReplace("/Humidity", humidity.Value<double>());
                     updateTwinData.AppendReplace("/Pressure", pressure.Value<double>());
+
                     await client.UpdateDigitalTwinAsync(deviceId, updateTwinData);
                 }
             }

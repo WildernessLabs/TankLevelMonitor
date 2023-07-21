@@ -52,12 +52,14 @@ namespace TankLevelMonitor_Azure.Azure
         {
             try
             {
+
+
                 string messagePayload = $"" +
                         $"{{" +
-                        $"\"Temperature\":{reading.Temperature.Value.Celsius}," +
-                        $"\"Humidity\":{reading.Humidity.Value.Percent}," +
-                        $"\"Pressure\":{reading.Pressure.Value.Millibar}," +
-                        $"\"Volume\":{volume.Milliliters}" +
+                        $"\"Temperature\":{reading.Temperature.Value.Celsius.ToString("F1")}," +
+                        $"\"Humidity\":{reading.Humidity.Value.Percent.ToString("F1")}," +
+                        $"\"Pressure\":{reading.Pressure.Value.Millibar.ToString("F1")}," +
+                        $"\"Volume\":{volume.Milliliters.ToString("F1")}" +
                         $"}}";
 
                 var payloadBytes = Encoding.UTF8.GetBytes(messagePayload);

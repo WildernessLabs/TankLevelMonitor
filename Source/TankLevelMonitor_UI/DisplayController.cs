@@ -97,13 +97,13 @@ namespace TankLevelMonitor_UI
 
             graphics.DrawText(
                 x: 11,
-                y: 90,
+                y: 87,
                 text: "Humidity",
                 color: foregroundColor);
 
             graphics.DrawText(
                 x: 11,
-                y: 169,
+                y: 166,
                 text: "Pressure",
                 color: foregroundColor);
 
@@ -116,24 +116,24 @@ namespace TankLevelMonitor_UI
         {
             graphics.DrawText(
                 x: 19,
-                y: 47,
-                text: $"{temp?.Temperature.Value.Celsius:n0}°C/{temp?.Temperature.Value.Fahrenheit:n0}°F",
+                y: 39,
+                text: $"{temp?.Temperature.Value.Celsius:n1}°C",
                 color: foregroundColor,
-                scaleFactor: ScaleFactor.X1);
+                scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
                 x: 19,
-                y: 126,
-                text: $"{temp?.Humidity.Value.Percent:n0}%",
+                y: 115,
+                text: $"{temp?.Humidity.Value.Percent:n1}%",
                 color: foregroundColor,
-                scaleFactor: ScaleFactor.X1);
+                scaleFactor: ScaleFactor.X2);
 
             graphics.DrawText(
                 x: 19,
-                y: 205,
-                text: $"{temp?.Pressure.Value.Millibar:n0}mbar",
+                y: 194,
+                text: $"{temp?.Pressure.Value.Bar:n1}bar",
                 color: foregroundColor,
-                scaleFactor: ScaleFactor.X1);
+                scaleFactor: ScaleFactor.X2);
         }
 
         void DrawWaterVolumeGraph(int volumePercent)
