@@ -1,7 +1,6 @@
 // Default URL for triggering event grid function in the local environment.
 // http://localhost:7071/runtime/webhooks/EventGrid?functionName={functionname}
 using Azure;
-using Azure.Core.Pipeline;
 using Azure.DigitalTwins.Core;
 using Azure.Identity;
 using Microsoft.Azure.EventGrid.Models;
@@ -33,14 +32,8 @@ namespace TankLevelMonitor_AzureFunction
 
             try
             {
-                var cred = new ManagedIdentityCredential("https://digitaltwins.azure.net");
-
-                var client = new DigitalTwinsClient(new Uri(adtInstanceUrl),
-                    cred,
-                    new DigitalTwinsClientOptions
-                    {
-                        Transport = new HttpClientTransport(singletonHttpClientInstance)
-                    });
+                var cred = new DefaultAzureCredential();
+                var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), cred);
 
                 log.LogInformation($"ADT service client connection created");
 
@@ -53,8 +46,6 @@ namespace TankLevelMonitor_AzureFunction
                     var decodedBytes = Convert.FromBase64String(deviceMessage["body"].ToString());
                     var jsonString = Encoding.UTF8.GetString(decodedBytes);
 
-                    log.LogInformation($"DATA - {jsonString}");
-
                     var dataMessage = (JObject)JsonConvert.DeserializeObject(jsonString);
 
                     // get our device id, temp and humidity from the object
@@ -63,11 +54,6 @@ namespace TankLevelMonitor_AzureFunction
                     var humidity = dataMessage["Humidity"];
                     var pressure = dataMessage["Pressure"];
                     var volume = dataMessage["Volume"];
-
-                    log.LogInformation($"Temperature - {dataMessage["Temperature"]}");
-                    log.LogInformation($"Humidity - {dataMessage["Humidity"]}");
-                    log.LogInformation($"Pressure - {dataMessage["Pressure"]}");
-                    log.LogInformation($"Volume - {dataMessage["Volume"]}");
 
                     var updateTwinData = new JsonPatchDocument();
                     updateTwinData.AppendReplace("/Temperature", temperature.Value<double>());
