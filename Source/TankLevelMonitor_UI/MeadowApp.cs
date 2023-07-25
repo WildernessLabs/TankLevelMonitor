@@ -20,7 +20,7 @@ namespace TankLevelMonitor_UI
 
             _displayController = new DisplayController(_display);
 
-            _distanceSensor = new SimulatedDistanceSensor(new Length(50, Length.UnitType.Centimeters), new Length(0), new Length(100, Length.UnitType.Centimeters));
+            _distanceSensor = new SimulatedDistanceSensor(new Length(100, Length.UnitType.Centimeters), new Length(0), new Length(100, Length.UnitType.Centimeters));
             _distanceSensor.StartUpdating(TimeSpan.FromSeconds(1));
 
             return Task.CompletedTask;
