@@ -46,6 +46,8 @@ namespace TankLevelMonitor_AzureFunction
                     var decodedBytes = Convert.FromBase64String(deviceMessage["body"].ToString());
                     var jsonString = Encoding.UTF8.GetString(decodedBytes);
 
+                    log.LogInformation(jsonString);
+
                     var dataMessage = (JObject)JsonConvert.DeserializeObject(jsonString);
 
                     // get our device id, temp and humidity from the object
@@ -59,6 +61,7 @@ namespace TankLevelMonitor_AzureFunction
                     updateTwinData.AppendReplace("/Temperature", temperature.Value<double>());
                     updateTwinData.AppendReplace("/Humidity", humidity.Value<double>());
                     updateTwinData.AppendReplace("/Pressure", pressure.Value<double>());
+                    updateTwinData.AppendReplace("/Volume", pressure.Value<double>());
 
                     await client.UpdateDigitalTwinAsync(deviceId, updateTwinData);
                 }
