@@ -17,7 +17,7 @@ Using a Project Lab and a distance sensor, build this reference project that mon
 
 On your Project Lab, connect a distance sensor like a Time Of Flight distance sensor (for a Bench prototype) on the I2c qwicc connector, or a MaxBotix (for a Lab prototype), fixed on the lid of a water cooler or whatever container you're using, for example: 
 
-[Image]
+![Image](Design/bench_tank_level_monitor.jpg)
 
 
 ## Build TankLevelMonitor driver
