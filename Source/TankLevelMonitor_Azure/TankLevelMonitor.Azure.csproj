@@ -6,8 +6,6 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Sensors.Distance.Vl53l0x" Version="1.1.0" />
-    <PackageReference Include="Meadow.ProjectLab" Version="1.1.0" />
     <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
   </ItemGroup>
   <ItemGroup>
