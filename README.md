@@ -12,6 +12,7 @@ Using a Project Lab and a distance sensor, build this reference project that mon
   * [TankLevelMonitor.Demo](#tanklevelmonitordemo)
   * [TankLevelMonitor.SQLite](#tanklevelmonitorsqlite)
   * [TankLevelMonitor.UI](#tanklevelmonitorui)
+* [Support](#support)
 
 ## Hardware
 
@@ -20,7 +21,7 @@ On your Project Lab, connect a distance sensor like a Time Of Flight distance se
 ![Image](Design/bench_tank_level_monitor.jpg)
 
 
-## Build TankLevelMonitor driver
+## Examining the TankLevelMonitor driver
 
 Looking at the [TankLevelMonitor.Core](Source/TankLevelMonitor/), a few things worth mentioning:
  * `ITankLevelHardware` is an interface that defines what your IoT Project is composed of, which in this case, is a Project Lab and a sensor of type `IRangeFinder`, which are distance sensors.
@@ -49,3 +50,9 @@ Store atmospheric and tank level readings on SQLite running on Meadow.
 ### [TankLevelMonitor.UI](Source/TankLevelMonitor_UI/)
 
 Speed up development build cycles by running Tank Level's UI screen straight from Windows using WinForms. Also learn how you can simulate a distance sensor by checking out the `SimulatedDistanceSensor` driver.
+
+## Support
+
+Having trouble running these samples? 
+* File an [issue](https://github.com/WildernessLabs/Meadow.Desktop.Samples/issues) with a repro case to investigate, and/or
+* Join our [public Slack](http://slackinvite.wildernesslabs.co/), where we have an awesome community helping, sharing and building amazing things using Meadow.
