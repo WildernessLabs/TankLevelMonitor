@@ -7,8 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.WinForms" Version="1.1.0" />
-    <PackageReference Include="Meadow.Windows" Version="1.1.0" />
+    <PackageReference Include="Meadow.Foundation.Displays.WinForms" Version="1.6.0" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Distance.MaxBotix" Version="1.6.0" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Distance.Vl53l0x" Version="1.6.0" />
+    <PackageReference Include="Meadow.Windows" Version="1.6.0" />
   </ItemGroup>
 
 </Project>

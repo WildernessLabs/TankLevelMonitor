@@ -1,5 +1,5 @@
 ﻿using Meadow;
-using Meadow.Peripherals.Sensors;
+using Meadow.Peripherals.Sensors.Distance;
 using Meadow.Units;
 
 namespace TankLevelMonitor.UI
@@ -19,6 +19,7 @@ namespace TankLevelMonitor.UI
         public bool IsSampling { get; protected set; } = false;
 
         public event EventHandler<IChangeResult<Length>> DistanceUpdated;
+        public event EventHandler<IChangeResult<Length>> Updated;
 
         public Length? MinLength { get; protected set; }
 

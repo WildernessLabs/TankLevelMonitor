@@ -1,5 +1,5 @@
 ﻿using Meadow.Devices;
-using Meadow.Peripherals.Sensors;
+using Meadow.Peripherals.Sensors.Distance;
 
 namespace WildernessLabs.Hardware.TankLevelMonitor
 {

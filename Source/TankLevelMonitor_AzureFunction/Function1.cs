@@ -3,7 +3,7 @@
 using Azure;
 using Azure.DigitalTwins.Core;
 using Azure.Identity;
-using Microsoft.Azure.EventGrid.Models;
+using Azure.Messaging.EventGrid;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.EventGrid;
 using Microsoft.Extensions.Logging;

@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Foundation.Displays;
-using Meadow.Peripherals.Sensors;
+using Meadow.Peripherals.Sensors.Distance;
 using Meadow.Units;
 using TankLevelMonitor.UI;
 
