@@ -27,7 +27,7 @@ namespace WildernessLabs.Hardware.TankLevelMonitor
             Hardware = hardware;
             TankSpecs = tankSpecs;
 
-            hardware.DistanceSensor.DistanceUpdated += DistanceSensorUpdated;
+            hardware.DistanceSensor.Updated += DistanceSensorUpdated;
         }
 
         private void DistanceSensorUpdated(object sender, IChangeResult<Length> changeResult)

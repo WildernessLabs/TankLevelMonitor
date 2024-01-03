@@ -6,9 +6,7 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\amqpnetlite\src\Amqp.csproj" />
     <ProjectReference Include="..\TankLevelMonitor\TankLevelMonitor.Core.csproj" />
   </ItemGroup>
   <ItemGroup>

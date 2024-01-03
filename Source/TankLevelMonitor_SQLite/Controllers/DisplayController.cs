@@ -1,4 +1,4 @@
-﻿using Meadow.Foundation;
+﻿using Meadow;
 using Meadow.Foundation.Graphics;
 using System;
 using TankLevelMonitor_Demo.SQLite.Models;
@@ -50,13 +50,13 @@ namespace TankLevelMonitor_Demo
 
         public void ShowSplashScreen()
         {
-            graphics.Clear(Meadow.Foundation.Color.FromHex("23ABE3"));
+            graphics.Clear(Color.FromHex("23ABE3"));
 
             graphics.DrawText(
                 x: graphics.Width / 2,
                 y: graphics.Height / 2,
                 text: "Tank Level Monitor",
-                color: Meadow.Foundation.Color.Black,
+                color: Color.Black,
                 scaleFactor: ScaleFactor.X2,
                 alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Center,
                 alignmentV: VerticalAlignment.Center);
