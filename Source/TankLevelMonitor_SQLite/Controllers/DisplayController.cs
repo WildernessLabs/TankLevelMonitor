@@ -1,5 +1,6 @@
 ﻿using Meadow;
 using Meadow.Foundation.Graphics;
+using Meadow.Peripherals.Displays;
 using System;
 using TankLevelMonitor_Demo.SQLite.Models;
 
@@ -37,7 +38,7 @@ namespace TankLevelMonitor_Demo
         }
         AtmosphericConditions? atmosphericConditions;
 
-        public DisplayController(IGraphicsDisplay display)
+        public DisplayController(IPixelDisplay display)
         {
             graphics = new MicroGraphics(display)
             {

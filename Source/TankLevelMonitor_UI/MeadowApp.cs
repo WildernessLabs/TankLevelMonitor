@@ -6,43 +6,20 @@ using TankLevelMonitor.UI;
 
 namespace TankLevelMonitor_UI
 {
-    public class MeadowApp : App<Windows>
+    public class MeadowApp : App<Desktop>
     {
         private IRangeFinder _distanceSensor;
-        private WinFormsDisplay _display = default!;
         private DisplayController _displayController;
 
         public override Task Initialize()
         {
             Console.WriteLine("Initialize...");
 
-            _display = new WinFormsDisplay(width: 320, height: 240);
-
-            _displayController = new DisplayController(_display);
+            Device.Display!.Resize(320, 240, 3);
+            _displayController = new DisplayController(Device.Display!);
 
             _distanceSensor = new SimulatedDistanceSensor(new Length(100, Length.UnitType.Centimeters), new Length(0), new Length(100, Length.UnitType.Centimeters));
             _distanceSensor.StartUpdating(TimeSpan.FromSeconds(1));
-
-            return Task.CompletedTask;
-        }
-
-        public override Task Run()
-        {
-            Console.WriteLine("Run...");
-
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    _displayController.AtmosphericConditions = RandomAtmosphericValue();
-
-                    _displayController.VolumePercent = (int)_distanceSensor.Distance?.Centimeters;
-
-                    Thread.Sleep(1000);
-                }
-            });
-
-            Application.Run(_display);
 
             return Task.CompletedTask;
         }
@@ -63,12 +40,40 @@ namespace TankLevelMonitor_UI
             return tuple;
         }
 
+        public override Task Run()
+        {
+            Console.WriteLine("Run...");
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    _displayController.AtmosphericConditions = RandomAtmosphericValue();
+
+                    _displayController.VolumePercent = (int)_distanceSensor.Distance?.Centimeters;
+
+                    Thread.Sleep(1000);
+                }
+            });
+
+            // NOTE: this will not return until the display is closed
+            ExecutePlatformDisplayRunner();
+
+            return Task.CompletedTask;
+        }
+
+        private void ExecutePlatformDisplayRunner()
+        {
+            if (Device.Display is SilkDisplay sd)
+            {
+                sd.Run();
+            }
+            MeadowOS.TerminateRun();
+            System.Environment.Exit(0);
+        }
+
         public static async Task Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            ApplicationConfiguration.Initialize();
-
             await MeadowOS.Start(args);
         }
     }

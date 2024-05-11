@@ -18,9 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.SQLite", "TankLevelMonitor_SQLite\TankLevelMonitor.SQLite.csproj", "{DF93F59D-E002-4221-A1A9-D8A9C321D06A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_External", "_External", "{86C74A85-230D-4549-AFB0-4ECDFF33BB63}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\MQTTnet\Source\MQTTnet\MQTTnet.csproj = ..\..\MQTTnet\Source\MQTTnet\MQTTnet.csproj
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Units", "..\..\Meadow.Units\Source\Meadow.Units\Meadow.Units.csproj", "{9FA1710B-47DB-4CA5-AFF7-1B2402C9DC00}"
 EndProject
@@ -59,6 +56,24 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Windows", "..\..\Meadow.Core\source\implementations\windows\Meadow.Windows\Meadow.Windows.csproj", "{06EDCD96-50F3-45BD-8CB8-8BB73F97C774}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amqp", "..\..\amqpnetlite\src\Amqp.csproj", "{500A677A-5DC5-4669-96F5-774F14F90617}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Desktop", "..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj", "{C44BE992-FF54-4DCF-8534-B13BD71A259D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Mac", "..\..\Meadow.Core\source\implementations\mac\Meadow.Mac\Meadow.Mac.csproj", "{713A0B4B-C501-4999-A8E8-EBCF1C540B36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Linux", "..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj", "{66BDA801-A370-4E55-9439-E65657AE5EB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization.MicroJson", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\Serialization.MicroJson.csproj", "{B53C3757-093D-41BA-AB7C-40A173F3DCB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.Silk", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Silk\Driver\Displays.Silk.csproj", "{E9041583-0C92-4FB0-9D8A-F40C77B4F550}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICs.IOExpanders.Mcp23xxx", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Mcp23xxx\Driver\ICs.IOExpanders.Mcp23xxx.csproj", "{CB06FBAD-6F54-46E4-AF2F-48014932459A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICs.IOExpanders.Sc16is7x2", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Sc16is7x2\Driver\ICs.IOExpanders.Sc16is7x2.csproj", "{4B8ECDB4-7A8E-41A9-9AB9-97F62ED51B9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Hid.Xpt2046", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Hid.Xpt2046\Driver\Sensors.Hid.Xpt2046.csproj", "{78D96F06-C612-4B4F-83A5-354A378FFFD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQTTnet", "..\..\MQTTnet\Source\MQTTnet\MQTTnet.csproj", "{1E2D5141-A8C9-438A-B634-CBB805C466A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,6 +215,42 @@ Global
 		{500A677A-5DC5-4669-96F5-774F14F90617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{500A677A-5DC5-4669-96F5-774F14F90617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{500A677A-5DC5-4669-96F5-774F14F90617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44BE992-FF54-4DCF-8534-B13BD71A259D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44BE992-FF54-4DCF-8534-B13BD71A259D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44BE992-FF54-4DCF-8534-B13BD71A259D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44BE992-FF54-4DCF-8534-B13BD71A259D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713A0B4B-C501-4999-A8E8-EBCF1C540B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713A0B4B-C501-4999-A8E8-EBCF1C540B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713A0B4B-C501-4999-A8E8-EBCF1C540B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713A0B4B-C501-4999-A8E8-EBCF1C540B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66BDA801-A370-4E55-9439-E65657AE5EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BDA801-A370-4E55-9439-E65657AE5EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BDA801-A370-4E55-9439-E65657AE5EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BDA801-A370-4E55-9439-E65657AE5EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B53C3757-093D-41BA-AB7C-40A173F3DCB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B53C3757-093D-41BA-AB7C-40A173F3DCB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B53C3757-093D-41BA-AB7C-40A173F3DCB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B53C3757-093D-41BA-AB7C-40A173F3DCB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9041583-0C92-4FB0-9D8A-F40C77B4F550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9041583-0C92-4FB0-9D8A-F40C77B4F550}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9041583-0C92-4FB0-9D8A-F40C77B4F550}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9041583-0C92-4FB0-9D8A-F40C77B4F550}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB06FBAD-6F54-46E4-AF2F-48014932459A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB06FBAD-6F54-46E4-AF2F-48014932459A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB06FBAD-6F54-46E4-AF2F-48014932459A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB06FBAD-6F54-46E4-AF2F-48014932459A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B8ECDB4-7A8E-41A9-9AB9-97F62ED51B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B8ECDB4-7A8E-41A9-9AB9-97F62ED51B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B8ECDB4-7A8E-41A9-9AB9-97F62ED51B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B8ECDB4-7A8E-41A9-9AB9-97F62ED51B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D96F06-C612-4B4F-83A5-354A378FFFD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D96F06-C612-4B4F-83A5-354A378FFFD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D96F06-C612-4B4F-83A5-354A378FFFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D96F06-C612-4B4F-83A5-354A378FFFD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E2D5141-A8C9-438A-B634-CBB805C466A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E2D5141-A8C9-438A-B634-CBB805C466A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E2D5141-A8C9-438A-B634-CBB805C466A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E2D5141-A8C9-438A-B634-CBB805C466A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,6 +280,15 @@ Global
 		{09F1EEA2-F7DD-469E-A8DE-E8BB0421260B} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
 		{06EDCD96-50F3-45BD-8CB8-8BB73F97C774} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
 		{500A677A-5DC5-4669-96F5-774F14F90617} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{C44BE992-FF54-4DCF-8534-B13BD71A259D} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{713A0B4B-C501-4999-A8E8-EBCF1C540B36} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{66BDA801-A370-4E55-9439-E65657AE5EB4} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{B53C3757-093D-41BA-AB7C-40A173F3DCB3} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{E9041583-0C92-4FB0-9D8A-F40C77B4F550} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{CB06FBAD-6F54-46E4-AF2F-48014932459A} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{4B8ECDB4-7A8E-41A9-9AB9-97F62ED51B9D} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{78D96F06-C612-4B4F-83A5-354A378FFFD5} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
+		{1E2D5141-A8C9-438A-B634-CBB805C466A3} = {86C74A85-230D-4549-AFB0-4ECDFF33BB63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD0696CC-880A-4832-9346-C3A44B529DC8}

@@ -1,4 +1,5 @@
 ﻿using Meadow.Foundation.Graphics;
+using Meadow.Peripherals.Displays;
 using Meadow.Units;
 
 namespace TankLevelMonitor_UI
@@ -35,7 +36,7 @@ namespace TankLevelMonitor_UI
         }
         (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? atmosphericConditions;
 
-        public DisplayController(IGraphicsDisplay display)
+        public DisplayController(IPixelDisplay display)
         {
             graphics = new MicroGraphics(display)
             {
