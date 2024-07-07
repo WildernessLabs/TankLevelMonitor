@@ -3,6 +3,8 @@ using Meadow.Foundation;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
+using TankLevelMonitor.Core.Contracts;
+using TankLevelMonitor.Core.Models;
 
 namespace WildernessLabs.Hardware.TankLevelMonitor
 {

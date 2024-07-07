@@ -2,8 +2,10 @@
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
+using TankLevelMonitor.Core;
+using TankLevelMonitor.Core.Contracts;
+using TankLevelMonitor.Core.Models;
 using TankLevelMonitor_Azure.Azure;
-using WildernessLabs.Hardware.TankLevelMonitor;
 
 namespace TankLevelMonitor_Azure
 {
@@ -15,7 +17,7 @@ namespace TankLevelMonitor_Azure
 
         protected ITankLevelHardware Hardware { get; set; }
 
-        protected TankLevelMonitor tankLevelSensor { get; set; }
+        protected TankLevelMonitorSensor tankLevelSensor { get; set; }
 
         public MainAppController(ITankLevelHardware hardware, TankSpecs storageConfig)
         {
@@ -25,12 +27,12 @@ namespace TankLevelMonitor_Azure
 
             iotHubManager = new IotHubManager();
 
-            tankLevelSensor = new TankLevelMonitor(hardware, storageConfig);
+            tankLevelSensor = new TankLevelMonitorSensor(hardware, storageConfig);
             tankLevelSensor.Updated += StorageContainerUpdated;
 
             displayController = new DisplayController(hardware.ProjectLab.Display);
 
-            hardware.ProjectLab.EnvironmentalSensor.Updated += Bme688Updated;
+            //hardware.ProjectLab.EnvironmentalSensor.Updated += Bme688Updated;
         }
 
         private async void Bme688Updated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
@@ -55,7 +57,7 @@ namespace TankLevelMonitor_Azure
 
         public Task Run()
         {
-            Hardware.ProjectLab.EnvironmentalSensor.StartUpdating(TimeSpan.FromSeconds(1));
+            //Hardware.ProjectLab.EnvironmentalSensor.StartUpdating(TimeSpan.FromSeconds(1));
 
             tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(1));
 

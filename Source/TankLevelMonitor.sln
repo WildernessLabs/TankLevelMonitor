@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.Core", "TankLevelMonitor\TankLevelMonitor.Core.csproj", "{72F74011-2C35-4490-BD5F-582ECBD96476}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.Demo", "TankLevelMonitor_Demo\TankLevelMonitor.Demo.csproj", "{841E63C8-CEB5-4A16-9382-563775B0EA37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.F7", "TankLevelMonitor_Demo\TankLevelMonitor.F7.csproj", "{841E63C8-CEB5-4A16-9382-563775B0EA37}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TankLevelMonitor.UI", "TankLevelMonitor_UI\TankLevelMonitor.UI.csproj", "{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E}"
 EndProject
@@ -256,7 +256,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{841E63C8-CEB5-4A16-9382-563775B0EA37} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}
 		{6356875F-AF82-4AFD-BE0F-CB4DAE2E295E} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}
 		{9BAD7EC0-F585-4382-88CB-5C1FFE516688} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}
 		{BA42C6B3-54FD-466C-8D0E-C0685E16E6F5} = {5F4E41AE-D5DC-4402-A169-396E2E4B5C67}

@@ -1,4 +1,4 @@
-﻿using Meadow;
+using Meadow;
 using Meadow.Foundation.Graphics;
 using Meadow.Peripherals.Displays;
 using System;
@@ -59,7 +59,7 @@ namespace TankLevelMonitor_Demo
                 text: "Tank Level Monitor",
                 color: Color.Black,
                 scaleFactor: ScaleFactor.X2,
-                alignmentH: Meadow.Foundation.Graphics.HorizontalAlignment.Center,
+                alignmentH: HorizontalAlignment.Center,
                 alignmentV: VerticalAlignment.Center);
 
             graphics.Show();

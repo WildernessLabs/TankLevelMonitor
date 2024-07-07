@@ -2,9 +2,11 @@
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
+using TankLevelMonitor.Core;
+using TankLevelMonitor.Core.Contracts;
+using TankLevelMonitor.Core.Models;
 using TankLevelMonitor_Demo.SQLite.Database;
 using TankLevelMonitor_Demo.SQLite.Models;
-using WildernessLabs.Hardware.TankLevelMonitor;
 
 namespace TankLevelMonitor_Demo
 {
@@ -14,7 +16,7 @@ namespace TankLevelMonitor_Demo
 
         protected ITankLevelHardware Hardware { get; set; }
 
-        readonly TankLevelMonitor tankLevelSensor;
+        readonly TankLevelMonitorSensor tankLevelSensor;
 
         AtmosphericConditions? atmosphericConditions;
 
@@ -24,7 +26,7 @@ namespace TankLevelMonitor_Demo
 
             Hardware = hardware;
 
-            tankLevelSensor = new TankLevelMonitor(hardware, storageConfig);
+            tankLevelSensor = new TankLevelMonitorSensor(hardware, storageConfig);
             tankLevelSensor.Updated += StorageContainerUpdated;
 
             if (hardware.ProjectLab.Display is { } display)
@@ -32,10 +34,10 @@ namespace TankLevelMonitor_Demo
                 displayController = new DisplayController(display);
             }
 
-            if (hardware.ProjectLab.EnvironmentalSensor is { } bme688)
-            {
-                bme688.Updated += Bme688Updated;
-            }
+            //if (hardware.ProjectLab.EnvironmentalSensor is { } bme688)
+            //{
+            //    bme688.Updated += Bme688Updated;
+            //}
         }
 
         private void Bme688Updated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
@@ -68,10 +70,10 @@ namespace TankLevelMonitor_Demo
 
         public Task Run()
         {
-            if (Hardware.ProjectLab.EnvironmentalSensor is { } bme688)
-            {
-                bme688.StartUpdating(TimeSpan.FromSeconds(5));
-            }
+            //if (Hardware.ProjectLab.EnvironmentalSensor is { } bme688)
+            //{
+            //    bme688.StartUpdating(TimeSpan.FromSeconds(5));
+            //}
 
             Resolver.Log.Info("Starting storage container update.");
             tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(5));

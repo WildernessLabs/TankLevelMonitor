@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
     <AssemblyName>TankLevelMonitor.Core</AssemblyName>
+    <LangVersion>10</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Distance.MaxBotix\Driver\Sensors.Distance.MaxBotix.csproj" />

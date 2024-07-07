@@ -1,7 +1,9 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
-using WildernessLabs.Hardware.TankLevelMonitor;
+using TankLevelMonitor.Core.Contracts;
+using TankLevelMonitor.Core.Hardware;
+using TankLevelMonitor.Core.Models;
 
 namespace TankLevelMonitor_Demo
 {

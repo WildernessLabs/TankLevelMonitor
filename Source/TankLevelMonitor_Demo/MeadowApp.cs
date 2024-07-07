@@ -1,13 +1,16 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
-using WildernessLabs.Hardware.TankLevelMonitor;
+using TankLevelMonitor.Core.Contracts;
+using TankLevelMonitor.Core.Hardware;
+using TankLevelMonitor.Core.Models;
+using TankLevelMonitor.F7;
 
 namespace TankLevelMonitor_Demo
 {
     public class MeadowApp : App<F7CoreComputeV2>
     {
-        MainAppController mainAppController;
+        MainController mainAppController;
 
         public override Task Initialize()
         {
@@ -34,7 +37,7 @@ namespace TankLevelMonitor_Demo
                     break;
             }
 
-            mainAppController = new MainAppController(hardware, tankSpecs);
+            mainAppController = new MainController(hardware, tankSpecs);
 
             return Task.CompletedTask;
         }
