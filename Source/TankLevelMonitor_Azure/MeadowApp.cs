@@ -2,13 +2,10 @@
 using Meadow.Devices;
 using Meadow.Hardware;
 using System.Threading.Tasks;
-using TankLevelMonitor.Core.Contracts;
-using TankLevelMonitor.Core.Hardware;
-using TankLevelMonitor.Core.Models;
 
 namespace TankLevelMonitor_Azure
 {
-    public class MeadowApp : App<F7CoreComputeV2>
+    public class MeadowApp : ProjectLabCoreComputeApp
     {
         MainAppController mainAppController;
 
@@ -16,11 +13,11 @@ namespace TankLevelMonitor_Azure
         {
             Resolver.Log.Info("Initialize...");
 
-            var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+            var wifi = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
             wifi.NetworkConnected += NetworkConnected;
 
-            TankSpecs tankSpecs;
-            ITankLevelHardware hardware;
+            TankSpecs tankSpecs = null;
+            ITankLevelHardware hardware = null;
 
             HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
             //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
@@ -29,13 +26,13 @@ namespace TankLevelMonitor_Azure
             {
                 case HardwareTypes.BenchPrototype:
                     Resolver.Log.Info("instantiating bench prototype hardware.");
-                    hardware = new TankLevelBenchPrototype();
+                    hardware = new TankLevelBenchPrototype(Hardware);
                     tankSpecs = KnownStorageContainerConfigs.Container3500ml;
                     break;
                 default:
                 case HardwareTypes.LabPrototype:
                     Resolver.Log.Info("Instantiating lab prototype hardware.");
-                    hardware = new TankLevelLabPrototype();
+                    hardware = new TankLevelLabPrototype(Hardware);
                     tankSpecs = KnownStorageContainerConfigs.Standard55GalDrum;
                     break;
             }

@@ -1,11 +1,13 @@
-﻿using Meadow.Devices;
+﻿using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Sensors.Distance;
 
-namespace TankLevelMonitor.Core.Contracts;
+namespace Meadow.Devices;
 
 public interface ITankLevelHardware
 {
-    IProjectLabHardware ProjectLab { get; set; }
+    IPixelDisplay Display { get; }
+
+    RotationType DisplayRotation { get; }
 
     IRangeFinder DistanceSensor { get; }
 }

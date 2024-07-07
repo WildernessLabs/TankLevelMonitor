@@ -1,10 +1,8 @@
 ﻿using Meadow;
+using Meadow.Devices;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
-using TankLevelMonitor.Core;
-using TankLevelMonitor.Core.Contracts;
-using TankLevelMonitor.Core.Models;
 using TankLevelMonitor_Azure.Azure;
 
 namespace TankLevelMonitor_Azure
@@ -17,7 +15,7 @@ namespace TankLevelMonitor_Azure
 
         protected ITankLevelHardware Hardware { get; set; }
 
-        protected TankLevelMonitorSensor tankLevelSensor { get; set; }
+        protected TankLevelSensors tankLevelSensor { get; set; }
 
         public MainAppController(ITankLevelHardware hardware, TankSpecs storageConfig)
         {
@@ -27,10 +25,10 @@ namespace TankLevelMonitor_Azure
 
             iotHubManager = new IotHubManager();
 
-            tankLevelSensor = new TankLevelMonitorSensor(hardware, storageConfig);
+            tankLevelSensor = new TankLevelSensors(hardware, storageConfig);
             tankLevelSensor.Updated += StorageContainerUpdated;
 
-            displayController = new DisplayController(hardware.ProjectLab.Display);
+            //displayController = new DisplayController(hardware.ProjectLab.Display);
 
             //hardware.ProjectLab.EnvironmentalSensor.Updated += Bme688Updated;
         }

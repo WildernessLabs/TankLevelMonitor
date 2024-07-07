@@ -1,20 +1,18 @@
 ﻿using Meadow;
+using Meadow.Devices;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
-using TankLevelMonitor.Core;
-using TankLevelMonitor.Core.Contracts;
-using TankLevelMonitor.Core.Models;
 
 namespace TankLevelMonitor.F7;
 
 public class MainController
 {
-    DisplayController displayController;
+    private DisplayController displayController;
 
     protected ITankLevelHardware Hardware { get; set; }
 
-    TankLevelMonitor.Core.TankLevelMonitorSensor tankLevelSensor;
+    TankLevelSensors tankLevelSensor;
 
     public MainController(ITankLevelHardware hardware, TankSpecs storageConfig)
     {
@@ -22,10 +20,10 @@ public class MainController
 
         Hardware = hardware;
 
-        tankLevelSensor = new TankLevelMonitorSensor(hardware, storageConfig);
+        tankLevelSensor = new TankLevelSensors(hardware, storageConfig);
         tankLevelSensor.Updated += StorageContainerUpdated;
 
-        if (hardware.ProjectLab.Display is { } display)
+        if (hardware.Display is { } display)
         {
             displayController = new DisplayController(display);
         }
@@ -47,9 +45,10 @@ public class MainController
 
     private void StorageContainerUpdated(object sender, IChangeResult<Volume> result)
     {
-        Resolver.Log.Info($"Distance Sensor: {tankLevelSensor.DistanceToTopOfLiquid.Centimeters:n2}cm / Storage container: {result.New.Liters:n2}liters. / fill percent: {(int)(tankLevelSensor.FillPercent * 100)}%");
-        //Resolver.Log.Info($"");
-        //Resolver.Log.Info($"");
+        Resolver.Log.Info($"" +
+            $"Distance Sensor: {tankLevelSensor.DistanceToTopOfLiquid.Centimeters:n2}cm | " +
+            $"Storage container: {result.New.Liters:n2}liters. | " +
+            $"Fill Percent: {(int)(tankLevelSensor.FillPercent * 100)}%");
         displayController.VolumePercent = (int)(tankLevelSensor.FillPercent * 100);
     }
 

@@ -1,14 +1,11 @@
-﻿using Meadow;
-using Meadow.Foundation;
+﻿using Meadow.Foundation;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
-using TankLevelMonitor.Core.Contracts;
-using TankLevelMonitor.Core.Models;
 
-namespace TankLevelMonitor.Core;
+namespace Meadow.Devices;
 
-public class TankLevelMonitorSensor : SamplingSensorBase<Volume>
+public class TankLevelSensors : SamplingSensorBase<Volume>
 {
     protected ITankLevelHardware Hardware;
 
@@ -22,7 +19,7 @@ public class TankLevelMonitorSensor : SamplingSensorBase<Volume>
 
     public Volume FillAmount => CalculateFillAmount(DistanceToTopOfLiquid);
 
-    public TankLevelMonitorSensor(
+    public TankLevelSensors(
         ITankLevelHardware hardware,
         TankSpecs tankSpecs)
     {

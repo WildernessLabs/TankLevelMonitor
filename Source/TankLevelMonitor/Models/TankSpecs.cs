@@ -1,6 +1,6 @@
 ﻿using Meadow.Units;
 
-namespace TankLevelMonitor.Core.Models;
+namespace Meadow.Devices;
 
 public class TankSpecs
 {

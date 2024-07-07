@@ -1,4 +1,4 @@
-﻿namespace TankLevelMonitor.Core.Hardware;
+﻿namespace Meadow.Devices;
 
 /// <summary>
 /// Which hardware 

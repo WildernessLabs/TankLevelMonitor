@@ -1,54 +1,53 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
-using TankLevelMonitor.Core.Contracts;
-using TankLevelMonitor.Core.Hardware;
-using TankLevelMonitor.Core.Models;
-using TankLevelMonitor.F7;
 
-namespace TankLevelMonitor_Demo
+namespace TankLevelMonitor.F7;
+
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    public class MeadowApp : App<F7CoreComputeV2>
+    private MainController mainController;
+
+    public override Task Initialize()
     {
-        MainController mainAppController;
+        Resolver.Log.Info("Initialize...");
 
-        public override Task Initialize()
+        ITankLevelHardware hardware = null;
+        TankSpecs tankSpecs = null;
+
+        HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
+        //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
+
+        switch (hardwareType)
         {
-            Resolver.Log.Info("Initialize...");
+            case HardwareTypes.BenchPrototype:
+                Resolver.Log.Info("instantiating bench prototype hardware");
+                hardware = new TankLevelBenchPrototype(Hardware);
+                tankSpecs = KnownStorageContainerConfigs.Container3500ml;
+                break;
 
-            TankSpecs tankSpecs;
-            ITankLevelHardware hardware;
+            case HardwareTypes.LabPrototype:
+                Resolver.Log.Info("Instantiating lab prototype hardware");
+                hardware = new TankLevelLabPrototype(Hardware);
+                tankSpecs = KnownStorageContainerConfigs.Standard55GalDrum;
+                break;
 
-            HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
-            //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
-
-            switch (hardwareType)
-            {
-                case HardwareTypes.BenchPrototype:
-                    Resolver.Log.Info("instantiating bench prototype hardware.");
-                    hardware = new TankLevelBenchPrototype();
-                    tankSpecs = KnownStorageContainerConfigs.Container3500ml;
-                    break;
-                default:
-                case HardwareTypes.LabPrototype:
-                    Resolver.Log.Info("Instantiating lab prototype hardware.");
-                    hardware = new TankLevelLabPrototype();
-                    tankSpecs = KnownStorageContainerConfigs.Standard55GalDrum;
-                    break;
-            }
-
-            mainAppController = new MainController(hardware, tankSpecs);
-
-            return Task.CompletedTask;
+            default:
+                Resolver.Log.Info("Undefined hardware configuration");
+                break;
         }
 
-        public override Task Run()
-        {
-            Resolver.Log.Info("Run...");
+        mainController = new MainController(hardware, tankSpecs);
 
-            mainAppController.Run();
+        return Task.CompletedTask;
+    }
 
-            return Task.CompletedTask;
-        }
+    public override Task Run()
+    {
+        Resolver.Log.Info("Run...");
+
+        mainController.Run();
+
+        return Task.CompletedTask;
     }
 }

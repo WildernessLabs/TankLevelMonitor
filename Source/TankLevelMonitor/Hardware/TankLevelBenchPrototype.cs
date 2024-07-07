@@ -1,18 +1,19 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Sensors.Distance;
+﻿using Meadow.Foundation.Sensors.Distance;
+using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Sensors.Distance;
-using TankLevelMonitor.Core.Contracts;
 
-namespace TankLevelMonitor.Core.Hardware;
+namespace Meadow.Devices;
 
 public class TankLevelBenchPrototype : ITankLevelHardware
 {
-    public IProjectLabHardware ProjectLab { get; set; }
+    public IPixelDisplay Display { get; private set; }
+
+    public RotationType DisplayRotation { get; private set; }
 
     public IRangeFinder DistanceSensor { get; set; }
 
-    public TankLevelBenchPrototype()
+    public TankLevelBenchPrototype(IProjectLabHardware projectLab)
     {
-        DistanceSensor = new Vl53l0x(ProjectLab.Qwiic.I2cBus);
+        DistanceSensor = new Vl53l0x(projectLab.Qwiic.I2cBus);
     }
 }
