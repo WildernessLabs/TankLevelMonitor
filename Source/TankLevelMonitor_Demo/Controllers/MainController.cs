@@ -28,15 +28,19 @@ public class MainController
             displayController = new DisplayController(display);
         }
 
-        //if (hardware.ProjectLab.EnvironmentalSensor is { } bme688)
-        //{
-        //    bme688.Updated += Bme688Updated;
-        //}
+        if ((Hardware as ProjectLabHardwareBase).AtmosphericSensor is { } bme688)
+        {
+            bme688.Updated += Bme688Updated;
+        }
     }
 
     private void Bme688Updated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
     {
-        //Resolver.Log.Info($"BME688: {(int)e.New.Temperature?.Celsius}°C - {(int)e.New.Humidity?.Percent}% - {(int)e.New.Pressure?.Millibar}mbar");
+        Resolver.Log.Info($"BME688: " +
+            $"Temperature: {(int)e.New.Temperature?.Celsius}°C - " +
+            $"Humidity: {(int)e.New.Humidity?.Percent}% - " +
+            $"Pressure: {(int)e.New.Pressure?.Millibar}mbar");
+
         if (displayController != null)
         {
             displayController.AtmosphericConditions = e.New;
@@ -45,19 +49,20 @@ public class MainController
 
     private void StorageContainerUpdated(object sender, IChangeResult<Volume> result)
     {
-        Resolver.Log.Info($"" +
+        Resolver.Log.Info($"TankLevelSensor: " +
             $"Distance Sensor: {tankLevelSensor.DistanceToTopOfLiquid.Centimeters:n2}cm | " +
-            $"Storage container: {result.New.Liters:n2}liters. | " +
+            $"Storage container: {result.New.Liters:n2}l | " +
             $"Fill Percent: {(int)(tankLevelSensor.FillPercent * 100)}%");
+
         displayController.VolumePercent = (int)(tankLevelSensor.FillPercent * 100);
     }
 
     public Task Run()
     {
-        //if (Hardware.ProjectLab.EnvironmentalSensor is { } bme688)
-        //{
-        //    bme688.StartUpdating(TimeSpan.FromSeconds(5));
-        //}
+        if ((Hardware as ProjectLabHardwareBase).AtmosphericSensor is { } bme688)
+        {
+            bme688.StartUpdating(TimeSpan.FromSeconds(5));
+        }
 
         Resolver.Log.Info("Starting storage container update.");
         tankLevelSensor.StartUpdating(TimeSpan.FromSeconds(5));
