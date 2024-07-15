@@ -7,7 +7,7 @@
         <LangVersion>10</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\TankLevelMonitor\TankLevelSensors.csproj" />
+        <ProjectReference Include="..\TankLevelSensors\TankLevelSensors.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Update="meadow.config.yaml">

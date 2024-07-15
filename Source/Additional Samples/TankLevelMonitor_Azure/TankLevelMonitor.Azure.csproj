@@ -6,8 +6,8 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\amqpnetlite\src\Amqp.csproj" />
-    <ProjectReference Include="..\TankLevelMonitor\TankLevelSensors.csproj" />
+    <ProjectReference Include="..\..\..\..\amqpnetlite\src\Amqp.csproj" />
+    <ProjectReference Include="..\..\TankLevelSensors\TankLevelSensors.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
