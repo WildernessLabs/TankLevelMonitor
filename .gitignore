@@ -351,3 +351,5 @@ MigrationBackup/
 
 # Mac Bullshit
 **/.DS_Store
+Source/Project1/.vscode/
+Source/Project2/.vscode/

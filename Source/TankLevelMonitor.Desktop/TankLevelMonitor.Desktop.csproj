@@ -8,6 +8,8 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
         <ProjectReference Include="..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+        <ProjectReference Include="..\TankLevelMonitor.Core\TankLevelMonitor.Core.csproj" />
+        <ProjectReference Include="..\TankLevelSensors\TankLevelSensors.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Include="app.config.yaml">
