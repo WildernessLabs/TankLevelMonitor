@@ -1,6 +1,10 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
+using TankLevelMonitor.Core;
+using TankLevelMonitor.Core.Contracts;
+using TankLevelMonitor.Core.Enums;
+using TankLevelMonitor.F7.Hardware;
 
 namespace TankLevelMonitor.F7;
 
@@ -13,23 +17,20 @@ public class MeadowApp : ProjectLabCoreComputeApp
         Resolver.Log.Info("Initialize...");
 
         ITankLevelHardware hardware = null;
-        TankSpecs tankSpecs = null;
 
-        HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
+        HardwareType hardwareType = HardwareType.BenchPrototype;
         //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
 
         switch (hardwareType)
         {
-            case HardwareTypes.BenchPrototype:
+            case HardwareType.BenchPrototype:
                 Resolver.Log.Info("instantiating bench prototype hardware");
-                hardware = new TankLevelBenchPrototype(Hardware);
-                tankSpecs = KnownStorageContainerConfigs.Container3500ml;
+                hardware = new BenchHardware(Hardware, KnownStorageContainerConfigs.Container3500ml);
                 break;
 
-            case HardwareTypes.LabPrototype:
+            case HardwareType.LabPrototype:
                 Resolver.Log.Info("Instantiating lab prototype hardware");
-                hardware = new TankLevelLabPrototype(Hardware);
-                tankSpecs = KnownStorageContainerConfigs.Standard55GalDrum;
+                hardware = new LabHardware(Hardware, KnownStorageContainerConfigs.Standard55GalDrum);
                 break;
 
             default:
@@ -37,7 +38,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
                 break;
         }
 
-        mainController = new MainController(hardware, tankSpecs);
+        mainController = new MainController(hardware);
 
         return Task.CompletedTask;
     }

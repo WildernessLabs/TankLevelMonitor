@@ -2,52 +2,55 @@
 using Meadow.Devices;
 using Meadow.Hardware;
 using System.Threading.Tasks;
+using TankLevelMonitor.Azure.Contracts;
+using TankLevelMonitor.Azure.Enums;
+using TankLevelMonitor.Azure.Hardware;
 
-namespace TankLevelMonitor_Azure
+namespace TankLevelMonitor_Azure;
+
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    public class MeadowApp : ProjectLabCoreComputeApp
+    private MainController mainController;
+
+    public override Task Initialize()
     {
-        MainAppController mainAppController;
+        Resolver.Log.Info("Initialize...");
 
-        public override Task Initialize()
+        var wifi = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        wifi.NetworkConnected += NetworkConnected;
+
+        ITankLevelHardware hardware = null;
+
+        HardwareType hardwareType = HardwareType.BenchPrototype;
+        //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
+
+        switch (hardwareType)
         {
-            Resolver.Log.Info("Initialize...");
+            case HardwareType.BenchPrototype:
+                Resolver.Log.Info("instantiating bench prototype hardware");
+                hardware = new BenchHardware(Hardware, KnownStorageContainerConfigs.Container3500ml);
+                break;
 
-            var wifi = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
-            wifi.NetworkConnected += NetworkConnected;
+            case HardwareType.LabPrototype:
+                Resolver.Log.Info("Instantiating lab prototype hardware");
+                hardware = new LabHardware(Hardware, KnownStorageContainerConfigs.Standard55GalDrum);
+                break;
 
-            TankSpecs tankSpecs = null;
-            ITankLevelHardware hardware = null;
-
-            HardwareTypes hardwareType = HardwareTypes.BenchPrototype;
-            //HardwareTypes hardwareType = HardwareTypes.LabPrototype;
-
-            switch (hardwareType)
-            {
-                case HardwareTypes.BenchPrototype:
-                    Resolver.Log.Info("instantiating bench prototype hardware.");
-                    hardware = new TankLevelBenchPrototype(Hardware);
-                    tankSpecs = KnownStorageContainerConfigs.Container3500ml;
-                    break;
-                default:
-                case HardwareTypes.LabPrototype:
-                    Resolver.Log.Info("Instantiating lab prototype hardware.");
-                    hardware = new TankLevelLabPrototype(Hardware);
-                    tankSpecs = KnownStorageContainerConfigs.Standard55GalDrum;
-                    break;
-            }
-
-            mainAppController = new MainAppController(hardware, tankSpecs);
-
-            return base.Initialize();
+            default:
+                Resolver.Log.Info("Undefined hardware configuration");
+                break;
         }
 
-        private async void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
-        {
-            Resolver.Log.Info("NetworkConnected...");
+        mainController = new MainController(hardware);
 
-            await mainAppController.iotHubManager.Initialize();
-            await mainAppController.Run();
-        }
+        return Task.CompletedTask;
+    }
+
+    private async void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
+    {
+        Resolver.Log.Info("NetworkConnected...");
+
+        await mainController.iotHubManager.Initialize();
+        await mainController.Run();
     }
 }

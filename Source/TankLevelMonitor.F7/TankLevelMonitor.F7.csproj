@@ -5,15 +5,20 @@
         <OutputType>Library</OutputType>
         <AssemblyName>App</AssemblyName>
         <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
+        <ProjectReference Include="..\TankLevelMonitor.Core\TankLevelMonitor.Core.csproj" />
         <ProjectReference Include="..\TankLevelSensors\TankLevelSensors.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <None Update="meadow.config.yaml">
+        <None Update="app.build.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="app.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="wifi.config.yaml">

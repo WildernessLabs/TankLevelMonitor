@@ -2,6 +2,9 @@
 
 namespace Meadow.Devices;
 
+/// <summary>
+/// Tank specifications.
+/// </summary>
 public class TankSpecs
 {
     /// <summary>

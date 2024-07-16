@@ -1,4 +1,5 @@
 ﻿using Meadow.Foundation;
+using Meadow.Peripherals.Sensors.Distance;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ namespace Meadow.Devices;
 
 public class TankLevelSensors : SamplingSensorBase<Volume>
 {
-    protected ITankLevelHardware Hardware;
+    protected IRangeFinder Hardware;
 
     public event EventHandler<IChangeResult<Volume>> Updated = delegate { };
 
@@ -15,18 +16,18 @@ public class TankLevelSensors : SamplingSensorBase<Volume>
 
     public TankSpecs TankSpecs { get; protected set; }
 
-    public double FillPercent => (FillAmount.Liters / TankSpecs.Capacity.Liters);
+    public double FillPercent => FillAmount.Liters / TankSpecs.Capacity.Liters;
 
     public Volume FillAmount => CalculateFillAmount(DistanceToTopOfLiquid);
 
     public TankLevelSensors(
-        ITankLevelHardware hardware,
+        IRangeFinder hardware,
         TankSpecs tankSpecs)
     {
         Hardware = hardware;
         TankSpecs = tankSpecs;
 
-        hardware.DistanceSensor.Updated += DistanceSensorUpdated;
+        hardware.Updated += DistanceSensorUpdated;
     }
 
     private void DistanceSensorUpdated(object sender, IChangeResult<Length> changeResult)
@@ -39,17 +40,17 @@ public class TankLevelSensors : SamplingSensorBase<Volume>
 
     public override void StartUpdating(TimeSpan? updateInterval = null)
     {
-        Hardware.DistanceSensor.StartUpdating(updateInterval);
+        Hardware.StartUpdating(updateInterval);
     }
 
     public override void StopUpdating()
     {
-        Hardware.DistanceSensor.StopUpdating();
+        Hardware.StopUpdating();
     }
 
     protected override Task<Volume> ReadSensor()
     {
-        return Task.FromResult(CalculateFillAmount(Hardware.DistanceSensor.Read().Result));
+        return Task.FromResult(CalculateFillAmount(Hardware.Read().Result));
     }
 
     protected Volume CalculateFillAmount(Length distanceToTop)

@@ -4,6 +4,25 @@ namespace Meadow.Devices;
 
 public static class KnownStorageContainerConfigs
 {
+    public static TankSpecs BenchContainer
+    {
+        get
+        {
+            if (benchContainer == null)
+            {
+                benchContainer = new TankSpecs
+                {
+                    Capacity = new Volume(55, Volume.UnitType.Gallons),
+                    EmptyHeight = new Length(20, Length.UnitType.Centimeters),
+
+                    VolumePerCentimeter = new Volume(10.5, Volume.UnitType.Liters)
+                };
+            }
+            return benchContainer;
+        }
+    }
+    private static TankSpecs benchContainer;
+
     public static TankSpecs Standard55GalDrum
     {
         get
@@ -26,25 +45,6 @@ public static class KnownStorageContainerConfigs
         }
     }
     private static TankSpecs standard55GalDrum;
-
-    public static TankSpecs BenchContainer
-    {
-        get
-        {
-            if (benchContainer == null)
-            {
-                benchContainer = new TankSpecs
-                {
-                    Capacity = new Volume(55, Volume.UnitType.Gallons),
-                    EmptyHeight = new Length(20, Length.UnitType.Centimeters),
-
-                    VolumePerCentimeter = new Volume(10.5, Volume.UnitType.Liters)
-                };
-            }
-            return benchContainer;
-        }
-    }
-    private static TankSpecs benchContainer;
 
     public static TankSpecs Container3500ml
     {
