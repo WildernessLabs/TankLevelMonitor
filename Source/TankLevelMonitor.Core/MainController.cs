@@ -1,6 +1,7 @@
 ﻿using Meadow;
 using Meadow.Units;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TankLevelMonitor.Core.Contracts;
 using TankLevelMonitor.Core.Controllers;
@@ -24,6 +25,9 @@ public class MainController
         if (hardware.Display is { } display)
         {
             displayController = new DisplayController(display, hardware.DisplayRotation);
+            displayController.ShowSplashScreen();
+            Thread.Sleep(3000);
+            displayController.ShowDataScreen();
         }
 
         //if ((Hardware as ProjectLabHardwareBase).AtmosphericSensor is { } bme688)
@@ -52,7 +56,7 @@ public class MainController
             $"Storage container: {result.New.Liters:n2}l | " +
             $"Fill Percent: {(int)(hardware.TankLevelSensors.FillPercent * 100)}%");
 
-        displayController.VolumePercent = (int)(hardware.TankLevelSensors.FillPercent * 100);
+        //displayController.VolumePercent = (int)(hardware.TankLevelSensors.FillPercent * 100);
     }
 
     public Task Run()
@@ -65,10 +69,10 @@ public class MainController
         Resolver.Log.Info("Starting storage container update.");
         hardware.TankLevelSensors.StartUpdating(TimeSpan.FromSeconds(5));
 
-        if (displayController != null)
-        {
-            displayController.Update();
-        }
+        //if (displayController != null)
+        //{
+        //    displayController.Update();
+        //}
 
         return Task.CompletedTask;
     }
